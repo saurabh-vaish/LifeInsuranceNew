@@ -107,7 +107,7 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before,
 							</div> 
 					
 						<!--Footer-->
-						<div class="modal-footer justify-content-center">
+						<div class=" justify-content-center">
 							<button type="submit" class="btn purple-gradient btn-lg btn-block btn-rounded wave-effect" >Register
 								<i class="fas fa-paper-plane"></i>
 							</button>

@@ -2,6 +2,8 @@ package com.app.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
@@ -39,4 +41,19 @@ public class BranchDaoImpl implements IBranchDao {
 		return ht.loadAll(Branch.class);
 	}
 
+	
+	@Override
+	public List<String> getBranchName() {
+
+	List<String> name=	(List<String>) ht.findByCriteria(
+				DetachedCriteria.forClass(Branch.class)
+				.setProjection(
+						Projections.projectionList()
+						.add(Projections.property("branchName"))
+						)
+				);
+		
+		return name;
+	}
+	
 }

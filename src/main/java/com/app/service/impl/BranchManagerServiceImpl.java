@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.app.dao.IBranchManagerDao;
+import com.app.model.Branch;
 import com.app.model.BranchManager;
 import com.app.service.IBranchManagerService;
 
@@ -42,5 +43,11 @@ public class BranchManagerServiceImpl implements IBranchManagerService {
 	}
 	
 	
+	@Transactional(readOnly=true)
+	public Branch getBranchByManagerId(Integer id) {
+
+	return dao.getBranchByManagerId(id);
+	
+	}
 
 }

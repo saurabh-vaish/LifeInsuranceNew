@@ -2,6 +2,7 @@ package com.app.dao;
 
 import java.util.List;
 
+import com.app.model.Branch;
 import com.app.model.BranchManager;
 
 public interface IBranchManagerDao {
@@ -12,6 +13,6 @@ public interface IBranchManagerDao {
 	public BranchManager getBranchManagerById(Integer id);
 	public List<BranchManager> getAllBranchManageres();
 	
-	
+	public Branch getBranchByManagerId(Integer id);
 	
 }

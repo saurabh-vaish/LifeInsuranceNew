@@ -11,4 +11,6 @@ public interface IBranchService {
 	public void deleteBranch(String id);
 	public Branch getBranchById(String id);
 	public List<Branch> getAllBranches();
+	
+	public List<String> getBranchName();
 }

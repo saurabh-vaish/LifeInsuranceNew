@@ -43,4 +43,10 @@ public class BranchServiceImpl implements IBranchService {
 		return dao.getAllBranches();
 	}
 
+	
+	@Override
+	public List<String> getBranchName() {
+		return dao.getBranchName();
+	}
+	
 }

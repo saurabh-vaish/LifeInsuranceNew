@@ -12,4 +12,5 @@ public interface IBranchDao {
 	public Branch getBranchById(String id);
 	public List<Branch> getAllBranches();
 	
+	public List<String> getBranchName();
 }

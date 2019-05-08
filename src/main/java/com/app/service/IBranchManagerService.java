@@ -2,6 +2,7 @@ package com.app.service;
 
 import java.util.List;
 
+import com.app.model.Branch;
 import com.app.model.BranchManager;
 
 public interface IBranchManagerService {
@@ -12,5 +13,5 @@ public interface IBranchManagerService {
 	public BranchManager getBranchManagerById(Integer id);
 	public List<BranchManager> getAllBranchManageres();
 	
-	
+	public Branch getBranchByManagerId(Integer id);
 }

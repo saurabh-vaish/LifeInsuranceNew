@@ -105,28 +105,51 @@ public class CEOController {
 
 	/***  manager start ****/
 	
+	// show Branch Registration page
+	@RequestMapping("/regManager")
+	public String showRegManager(ModelMap map)
+	{
+		map.addAttribute("manager", new BranchManager());
+		map.addAttribute("listbranch", service.getBranchName());
+		return "managerRegistration";
+	}
+		
+	// save manager
+	@RequestMapping(value="/save",method=RequestMethod.POST) 
+	public String managerReg(@ModelAttribute BranchManager manager,ModelMap map) 
+	{
+		System.out.println(manager);
+		Integer id = bservice.saveBranchManager(manager);
+		map.addAttribute("msg", "Manager registered successfully");
+		return "redirect:/ceo/managerRegistration";
+	}
+	
 	// all managers
-		@RequestMapping("/allManager")
-		public String allManagers(ModelMap map)
-		{
-			map.addAttribute("manager", bservice.getAllBranchManageres());
-			return "managersAll";
-		}
+	@RequestMapping("/allManager")
+	public String allManagers(ModelMap map)
+	{
+		map.addAttribute("manager", bservice.getAllBranchManageres());
+		return "managersAll";
+	}
 		
 		// view branch
-		@RequestMapping("/branchDetails")
-		public String viewManager(@RequestParam("bid")String id,ModelMap map)
+		@RequestMapping("/managerDetails")
+		public String viewManager(@RequestParam("mid")Integer id,ModelMap map)
 		{
-			Branch b = service.getBranchById(id);
-			System.out.println(b);
+			BranchManager bm = bservice.getBranchManagerById(id);
+			System.out.println(bm);
+			map.addAttribute("manager",bm);
+			
+			Branch b = bservice.getBranchByManagerId(id);
 			map.addAttribute("branch",b);
-			map.addAttribute("listmgr", bservice.getAllBranchManageres());
-			return "branchView";
+		//	System.out.println("controller"+bservice.getBranchByManagerId(id));
+			
+			return "managerView";
 		}
 		
 		
 		// delete branch
-		@RequestMapping("/branchDel")
+		@RequestMapping("/managerDel")
 		public String deleteManager(@RequestParam("bid")String id,ModelMap map)
 		{
 			service.deleteBranch(id);
@@ -136,7 +159,7 @@ public class CEOController {
 			
 		
 		// update branch 
-		@RequestMapping(value="/branchUpdate",method=RequestMethod.POST) 
+		@RequestMapping(value="/managerUpdate",method=RequestMethod.POST) 
 		public String updateManager(@ModelAttribute Branch branch,ModelMap map) 
 		{
 			System.out.println(branch);

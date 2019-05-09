@@ -1,6 +1,4 @@
 
-<i class="fas fa-bars"></i>
-
 <!-- Footer -->
 <footer class="page-footer font-small purple-gradient">
 

@@ -25,11 +25,11 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before,
 		<div class="col-sm-12 col-md-12">
 
 			
-			<c:if test="${empty branch}">
+			<c:if test="${empty agent}">
 				<c:out value="NO DATA FOUND"></c:out>
 			</c:if>
 
-			<c:if test="${!empty branch }">
+			<c:if test="${!empty agent }">
 
 				<!-- Card Wider -->
 				<div class="card card-cascade p-5">
@@ -38,7 +38,7 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before,
 					<div class="view view-cascade gradient-card-header blue-gradient">
 
 						<!-- Title -->
-						<h2 class="card-header-title mb-3">Branch List</h2>
+						<h2 class="card-header-title mb-3">Agent List</h2>
 
 					</div>
 
@@ -49,24 +49,26 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before,
 						cellspacing="0" width="100%">
 						<thead>
 							<tr>
-								<th class="th-sm">Branch Id</th>
-								<th class="th-sm">Branch Name</th>
-								<th class="th-sm">Location</th>
-								<th class="th-sm">State</th>
+								<th class="th-sm">Id</th>
+								<th class="th-sm">Name</th>
+								<th class="th-sm">Father Name</th>
+								<th class="th-sm">Age</th>
+								<th class="th-sm">Gender</th>
 								<th class="th-sm">Operations</th>
 
 							</tr>
 						</thead>
 						<tbody>
-						<c:forEach items="${branch}" var="ob">
+						<c:forEach items="${agent}" var="ob">
 						
 							<tr>
-								<td>${ob.branchId}</td>
-								<td>${ob.branchName}</td>
-								<td>${ob.branchLocation}</td>
-								<td>${ob.branchState}</td>
+								<td>${ob.agentId}</td>
+								<td>${ob.agentName}</td>
+								<td>${ob.agentfName}</td>
+								<td>${ob.agentAge}</td>
+								<td>${ob.agentGen}</td>
 								<td>
-									<a href="branchDetails?bid=${ob.branchId}"><i  class="fas fa-info-circle fa-2x indigo-text"></i></a>
+									<a href="agentDetails?aid=${ob.agentId}"><i  class="fas fa-info-circle fa-2x indigo-text"></i></a>
 								</td>
 							</tr>
 							
@@ -80,21 +82,6 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before,
 			</c:if>
 			
 			${msg}
-			
-			
-			
-					<h5> ${param} param</h5>
-					<h5> ${param.bid} bid</h5>
-					<h5> ${param.msg}  msg</h5>
-	
-					<c:if test="${param.msg ne null}">
-							<div class="card card-footer bg-success">
-								<h5> ${param.msg} </h5>
-							</div>
-						</c:if>
-			
-			
-			
 			
 			
 		</div>

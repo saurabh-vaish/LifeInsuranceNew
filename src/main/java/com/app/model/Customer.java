@@ -1,8 +1,11 @@
 package com.app.model;
 
+import java.util.Arrays;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
@@ -34,6 +37,10 @@ public class Customer {
 	@Column(name="CONTACT")
 	private String custPhone;
 	
+	@Column(name="photo")
+	@Lob
+	private byte[] customerPic;
+	
 	
 	public Customer() {
 		super();
@@ -45,8 +52,11 @@ public class Customer {
 	}
 
 	
+	
+
 	public Customer(Integer custId, String custName, String custFname, String custAge, String custSex, String custQual,
-			String custAddress, String custOccup, String custDate, String custAgentId, String custPhone) {
+			String custAddress, String custOccup, String custDate, String custAgentId, String custPhone,
+			byte[] customerPic) {
 		super();
 		this.custId = custId;
 		this.custName = custName;
@@ -59,6 +69,7 @@ public class Customer {
 		this.custDate = custDate;
 		this.custAgentId = custAgentId;
 		this.custPhone = custPhone;
+		this.customerPic = customerPic;
 	}
 
 	public Integer getCustId() {
@@ -150,16 +161,22 @@ public class Customer {
 		this.custPhone = custPhone;
 	}
 
+	public byte[] getCustomerPic() {
+		return customerPic;
+	}
+
+	public void setCustomerPic(byte[] customerPic) {
+		this.customerPic = customerPic;
+	}
+
 	@Override
 	public String toString() {
 		return "Customer [custId=" + custId + ", custName=" + custName + ", custFname=" + custFname + ", custAge="
 				+ custAge + ", custSex=" + custSex + ", custQual=" + custQual + ", custAddress=" + custAddress
 				+ ", custOccup=" + custOccup + ", custDate=" + custDate + ", custAgentId=" + custAgentId
-				+ ", custPhone=" + custPhone + "]";
+				+ ", custPhone=" + custPhone + ", customerPic=" + Arrays.toString(customerPic) + "]";
 	}
 
-		
-	
 	
 	
 }

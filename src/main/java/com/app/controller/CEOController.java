@@ -1,10 +1,5 @@
 package com.app.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,11 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.annotation.SessionScope;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.app.model.Branch;
 import com.app.model.BranchManager;
+import com.app.service.IAgentService;
 import com.app.service.IBranchManagerService;
 import com.app.service.IBranchService;
+import com.app.service.ICustomerService;
 
 @Controller
 @RequestMapping("/ceo")
@@ -29,6 +27,12 @@ public class CEOController {
 
 	@Autowired
 	private IBranchManagerService bservice;
+	
+	@Autowired
+	private IAgentService aservice;
+	
+	@Autowired
+	private ICustomerService cservice;
 	
 	@RequestMapping("/show")
 	public String showHome()
@@ -50,9 +54,10 @@ public class CEOController {
 	
 	// save branch 
 	@RequestMapping(value="/branchReg",method=RequestMethod.POST) 
-	public String branchReg(@ModelAttribute Branch branch,ModelMap map) 
+	public String branchReg(@ModelAttribute Branch branch, ModelMap map) 
 	{
 		System.out.println(branch);
+		
 		String id = service.saveBranch(branch);
 		map.addAttribute("msg", "branch registered successfully"+id);
 		return "branchRegistration";
@@ -116,12 +121,15 @@ public class CEOController {
 		
 	// save manager
 	@RequestMapping(value="/save",method=RequestMethod.POST) 
-	public String managerReg(@ModelAttribute BranchManager manager,ModelMap map) 
+	public String managerReg(@ModelAttribute BranchManager manager,@RequestParam CommonsMultipartFile mfile,ModelMap map) 
 	{
 		System.out.println(manager);
+		
+		manager.setManagerPic(mfile.getBytes());
+		
 		Integer id = bservice.saveBranchManager(manager);
 		map.addAttribute("msg", "Manager registered successfully");
-		return "redirect:/ceo/managerRegistration";
+		return "redirect:/ceo/regManager";
 	}
 	
 	// all managers
@@ -132,42 +140,64 @@ public class CEOController {
 		return "managersAll";
 	}
 		
-		// view branch
-		@RequestMapping("/managerDetails")
-		public String viewManager(@RequestParam("mid")Integer id,ModelMap map)
-		{
-			BranchManager bm = bservice.getBranchManagerById(id);
-			System.out.println(bm);
-			map.addAttribute("manager",bm);
-			
-			Branch b = bservice.getBranchByManagerId(id);
-			map.addAttribute("branch",b);
-		//	System.out.println("controller"+bservice.getBranchByManagerId(id));
-			
-			return "managerView";
-		}
-		
-		
-		// delete branch
-		@RequestMapping("/managerDel")
-		public String deleteManager(@RequestParam("bid")String id,ModelMap map)
-		{
-			service.deleteBranch(id);
-			map.addAttribute("msg", "branch Deleted successfully");
-			return "redirect:/ceo/allBranch";
-		}	
-			
-		
-		// update branch 
-		@RequestMapping(value="/managerUpdate",method=RequestMethod.POST) 
-		public String updateManager(@ModelAttribute Branch branch,ModelMap map) 
-		{
-			System.out.println(branch);
-			service.updateBranch(branch);
-			map.addAttribute("msg", "branch updated successfully");
-			return "redirect:/ceo/branchDetails?bid="+branch.getBranchId();
-		}
+	// view Manager
+	@RequestMapping("/managerDetails")
+	public String viewManager(@RequestParam("mid")Integer id,ModelMap map)
+	{
+		BranchManager bm = bservice.getBranchManagerById(id);
+		System.out.println(bm);
+		map.addAttribute("manager",bm);
 
+		Branch b = bservice.getBranchByManagerId(id);
+		map.addAttribute("listbranch", service.getBranchName());
+		
+		map.addAttribute("branch",b);
+		//	System.out.println("controller"+bservice.getBranchByManagerId(id));
+
+		return "managerView";
+	}
+		
+		
+	// delete Manager
+	@RequestMapping("/managerDel")
+	public String deleteManager(@RequestParam("mid")Integer id,ModelMap map)
+	{
+		bservice.deleteBranchManager(id);
+		map.addAttribute("msg", "branchmanager Deleted successfully");
+		return "redirect:/ceo/allManager";
+	}	
+
+
+	// update Manager
+	@RequestMapping(value="/update",method=RequestMethod.POST) 
+	public String updateManager(@ModelAttribute BranchManager manager,ModelMap map,@RequestParam CommonsMultipartFile mfile) 
+	{
+		manager.setManagerPic(mfile.getBytes());
+		
+		bservice.updateBranchManager(manager);
+		map.addAttribute("msg", "branchManager updated successfully");
+		return "redirect:/ceo/managerDetails?mid="+manager.getMgrId();
+	}
+
+	/***  Manager Ends ****/
 	
+	
+	/*** Reports ****/
+	
+	// all agents
+	@RequestMapping("allAgents")
+	public String getAllAgents(ModelMap map)
+	{
+		map.addAttribute("agent", aservice.getAllAgents());
+		return "agentListCeo";
+	}
+	
+	// all customers
+	@RequestMapping("allCustomers")
+	public String getAllCustomers(ModelMap map)
+	{
+		map.addAttribute("customer", cservice.getAllCustomers());
+		return "customerListCeo";
+	}
 	
 }

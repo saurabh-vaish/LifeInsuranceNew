@@ -1,8 +1,13 @@
 package com.app.controller;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -60,6 +65,27 @@ public class ManagerController {
 			map.addAttribute("manager",bservice.getBranchManagerById(id));
 			return "managerProfile";
 		}
+		
+		
+		// Display image
+		@RequestMapping("/get")
+		public String getOneUser(ModelMap map,@RequestParam Integer id,HttpServletResponse resp)
+		{
+			BranchManager manager = bservice.getBranchManagerById(id);
+
+			try {
+				resp.setContentType("image/jpeg");
+				InputStream inputStream = new ByteArrayInputStream(manager.getManagerPic());
+				IOUtils.copy(inputStream, resp.getOutputStream());
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			map.addAttribute("manager",manager);
+
+			return "managerProfile";
+		}
 
 
 		// edit profile
@@ -74,7 +100,7 @@ public class ManagerController {
 
 
 		@RequestMapping("agentList")
-		public String getCustomerList(@RequestParam(value="mid",required=false,defaultValue="0")Integer mid, ModelMap map)
+		public String getAgentList(@RequestParam(value="mid",required=false,defaultValue="0")Integer mid, ModelMap map)
 		{
 			//System.out.println("data "+ cservice.getCustomerByAgentId(aid));
 			if(mid==0) {

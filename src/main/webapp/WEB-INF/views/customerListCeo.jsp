@@ -25,11 +25,11 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before,
 		<div class="col-sm-12 col-md-12">
 
 			
-			<c:if test="${empty branch}">
+			<c:if test="${empty customer}">
 				<c:out value="NO DATA FOUND"></c:out>
 			</c:if>
 
-			<c:if test="${!empty branch }">
+			<c:if test="${!empty customer }">
 
 				<!-- Card Wider -->
 				<div class="card card-cascade p-5">
@@ -38,65 +38,56 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before,
 					<div class="view view-cascade gradient-card-header blue-gradient">
 
 						<!-- Title -->
-						<h2 class="card-header-title mb-3">Branch List</h2>
+						<h2 class="card-header-title mb-3">Customer List</h2>
 
 					</div>
 
 				<div class="card-body card-body-cascade text-center">
 
-					<table id="dtBasicExample"
-						class="table table-striped table-bordered table-sm"
+					<table id="dtBasicExample" class="table  table-striped table-bordered table-sm"
 						cellspacing="0" width="100%">
-						<thead>
+						<thead class="black white-text ">
 							<tr>
-								<th class="th-sm">Branch Id</th>
-								<th class="th-sm">Branch Name</th>
-								<th class="th-sm">Location</th>
-								<th class="th-sm">State</th>
-								<th class="th-sm">Operations</th>
+								<th class="th-sm">Id</th>
+								<th class="th-sm">Name</th>
+								<th class="th-sm">Father Name</th>
+								<th class="th-sm">Age</th>
+								<th class="th-sm">Gender</th>
+								<th class="th-sm">More</th>
 
 							</tr>
 						</thead>
 						<tbody>
-						<c:forEach items="${branch}" var="ob">
+						<c:forEach items="${customer}" var="ob">
 						
 							<tr>
-								<td>${ob.branchId}</td>
-								<td>${ob.branchName}</td>
-								<td>${ob.branchLocation}</td>
-								<td>${ob.branchState}</td>
+								<td>${ob.custId}</td>
+								<td>${ob.custName}</td>
+								<td>${ob.custFname}</td>
+								<td>${ob.custAge}</td>
+								<td>${ob.custSex}</td>
 								<td>
-									<a href="branchDetails?bid=${ob.branchId}"><i  class="fas fa-info-circle fa-2x indigo-text"></i></a>
+									<a href="custDetails?cid=${ob.custId}"><i  class="fas fa-info-circle fa-2x indigo-text"></i></a>
 								</td>
 							</tr>
 							
 						</c:forEach>
 						</tbody>
-						
+						<tfoot>
+							<tr>
+								<th >Id</th>
+								<th >Name</th>
+								<th >Father Name</th>
+								<th >Age</th>
+								<th >Gender</th>
+								<th >More</th>
+							</tr>
+						</tfoot>
 					</table>
 					</div>
 				</div>
 				<br />
 			</c:if>
-			
-			${msg}
-			
-			
-			
-					<h5> ${param} param</h5>
-					<h5> ${param.bid} bid</h5>
-					<h5> ${param.msg}  msg</h5>
-	
-					<c:if test="${param.msg ne null}">
-							<div class="card card-footer bg-success">
-								<h5> ${param.msg} </h5>
-							</div>
-						</c:if>
-			
-			
-			
-			
-			
 		</div>
 	</div>
 </div>

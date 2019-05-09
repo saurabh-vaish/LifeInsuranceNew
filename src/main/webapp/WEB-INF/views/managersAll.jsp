@@ -77,11 +77,20 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before,
 						
 					</table>
 					</div>
+					
+						<c:if test="${param.msg ne null}">
+							<div class="card card-footer bg-success">
+								<h5> ${param.msg} </h5>
+							</div>
+						</c:if>
+					
+					
 				</div>
 				<br />
 			</c:if>
 			
 			${msg}
+			
 			
 			
 		</div>

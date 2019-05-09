@@ -1,10 +1,12 @@
 package com.app.model;
 
+import java.util.Arrays;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -37,6 +39,13 @@ public class BranchManager {
 	@Column(name="CONTACT")
 	private String mgrPhone;
 	
+	
+	@Column(name="photo")
+	@Lob
+	private byte[] managerPic;
+	
+	
+	
 	public BranchManager() {
 		super();
 	}
@@ -46,8 +55,11 @@ public class BranchManager {
 		this.mgrId = mgrId;
 	}
 	
+	
+	
+	
 	public BranchManager(Integer mgrId, String mgrName, String mgrFname, String mgrAge, String mgrGen, String mgrQual,
-			String mgrAddress, String mgrBranchName, Date mgrJoinDate, String mgrPhone) {
+			String mgrAddress, String mgrBranchName, Date mgrJoinDate, String mgrPhone, byte[] managerPic) {
 		super();
 		this.mgrId = mgrId;
 		this.mgrName = mgrName;
@@ -59,7 +71,9 @@ public class BranchManager {
 		this.mgrBranchName = mgrBranchName;
 		this.mgrJoinDate = mgrJoinDate;
 		this.mgrPhone = mgrPhone;
+		this.managerPic = managerPic;
 	}
+
 	public Integer getMgrId() {
 		return mgrId;
 	}
@@ -124,13 +138,22 @@ public class BranchManager {
 	public void setMgrPhone(String mgrPhone) {
 		this.mgrPhone = mgrPhone;
 	}
+
+	public byte[] getManagerPic() {
+		return managerPic;
+	}
+
+	public void setManagerPic(byte[] managerPic) {
+		this.managerPic = managerPic;
+	}
+
 	@Override
 	public String toString() {
 		return "BranchManager [mgrId=" + mgrId + ", mgrName=" + mgrName + ", mgrFname=" + mgrFname + ", mgrAge="
 				+ mgrAge + ", mgrGen=" + mgrGen + ", mgrQual=" + mgrQual + ", mgrAddress=" + mgrAddress
-				+ ", mgrBranchName=" + mgrBranchName + ", mgrJoinDate=" + mgrJoinDate + ", mgrPhone=" + mgrPhone + "]";
+				+ ", mgrBranchName=" + mgrBranchName + ", mgrJoinDate=" + mgrJoinDate + ", mgrPhone=" + mgrPhone
+				+ ", managerPic=" + Arrays.toString(managerPic) + "]";
 	}
-	
 	
 	
 	

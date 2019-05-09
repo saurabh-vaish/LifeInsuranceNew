@@ -129,7 +129,7 @@
   <!-- Bootstrap core JavaScript -->
   <script type="text/javascript" src="<c:url value='/resources/js/bootstrap.min.js'/>" ></script>
   <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="<c:url value='/resources/js/mdb.min.js'/>"  ></script>
+  <script type="text/javascript" src="<c:url value='/resources/js/mdb.min.js'/>"  ></script> 
    <!-- MDB datables JavaScript -->
   <script type="text/javascript" src="<c:url value='/resources/js/addons/datatables.min.js'/>"  ></script>
   <script type="text/javascript" src="<c:url value='/resources/js/addons/datatables-select.min.js'/>"  ></script>

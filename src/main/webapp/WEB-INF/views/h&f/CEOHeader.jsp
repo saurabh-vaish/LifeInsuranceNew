@@ -177,8 +177,8 @@
             aria-expanded="false">Reports
           </a>
           <div class="dropdown-menu dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-555">
-          	<a class="dropdown-item" href="regBranch">Agents</a>
-            <a class="dropdown-item" href="allBranch">Customers</a>
+          	<a class="dropdown-item" href="allAgents">Agents</a>
+            <a class="dropdown-item" href="allCustomers">Customers</a>
           </div>
        </li> 
         

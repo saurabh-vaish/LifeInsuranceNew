@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.app.model.Agent;
 import com.app.model.Customer;
@@ -153,7 +154,7 @@ public class AgentController {
 		
 	// edit customer profile
 	@RequestMapping(value="/saveCust",method=RequestMethod.POST)
-	public String saveCustomer(@ModelAttribute Customer customer,ModelMap map)
+	public String saveCustomer(@ModelAttribute Customer customer,@RequestParam CommonsMultipartFile customerPic,  ModelMap map)
 	{
 		if(customer.getCustSex().equalsIgnoreCase("Male"))
 		{
@@ -163,6 +164,11 @@ public class AgentController {
 		{
 			customer.setCustSex("F");
 		}
+		
+		
+		customer.setCustomerPic(customerPic.getBytes());
+		
+		
 		cservice.saveCustomer(customer);
 		return "redirect:custDetails?cid="+customer.getCustId();
 	}

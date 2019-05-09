@@ -82,6 +82,13 @@
 		</div>
 		<!-- Card -->
 
+		
+					<c:if test="${param.msg ne null}">
+							<div class="card card-footer bg-success">
+								<h5> ${param.msg} </h5>
+							</div>
+						</c:if>
+
 	<style>
 		.readOnly{
 			background-color: #d3d3d3 !important; 
@@ -250,7 +257,7 @@
 					
 						<!--Footer-->
 						<div class="modal-footer justify-content-center">
-							<button type="submit" class="btn purple-gradient btn-lg btn-block btn-rounded wave-effect" >Register
+							<button type="submit" class="btn purple-gradient btn-lg btn-block btn-rounded wave-effect" >Update
 								<i class="fas fa-paper-plane"></i>
 							</button>
 						</div> 
@@ -400,6 +407,9 @@
 	</div>
 
 ${msg }
+
+
+
 
 
 </div>

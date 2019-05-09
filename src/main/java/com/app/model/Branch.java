@@ -34,7 +34,7 @@ public class Branch {
 	private String branchState;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="mid",unique=true)
+	@JoinColumn(name="mid")
 	private BranchManager manager = new BranchManager();
 	
 	public Branch() {

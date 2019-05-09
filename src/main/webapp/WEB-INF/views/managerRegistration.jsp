@@ -41,14 +41,16 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before,
 
 			<!--  add Manager -->
 	
-			<form:form action="save"  method="post" modelAttribute="manager" class="needs-validation" novalidation="true"> 
+	
+	
+			<form:form action="save"  method="post" modelAttribute="manager" class="needs-validation" enctype="multipart/form-data"> 
 						
 						<div class="md-form mb-5">
 								<i class="fas fa-user prefix grey-text"></i>
 								<form:input   class="form-control validate readOnly" path="mgrId" required="true" />
 								<label data-error="wrong" data-success="right" for="mgrId">manager Id</label>
 							</div>
-
+	
 							<div class="md-form">
 								<i class="fas fa-envelope prefix grey-text"></i> 
 								<form:input  class="form-control validate" path="mgrName" required="true"/>
@@ -102,14 +104,27 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before,
 								<form:input  class="form-control  validate" path="mgrPhone" required="true" />
 								<label data-error="wrong" data-success="right" for="mgrPhone">Contact</label>
 							</div>
+							<div class="md-form">
+								      <input type="file" name="mfile" required="true">
+<!-- 								 <div class="file-field">
+								    <a class="btn-floating purple-gradient mt-0 float-left">
+								      <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
+								      <input type="file" id="managerPic" name="managerPic" required="true">
+								    </a>
+								    <div class="file-path-wrapper">
+								      <input class="file-path validate" type="text" placeholder="manager picture">
+								    </div>
+								 </div> 
+ -->						</div>
 					
 						<!--Footer-->
-						<div class="card-footer justify-content-center">
-							<input type="submit" class="btn btn-outline-warning waves-effect" />Submit
-								<i class="fas fa-paper-plane-o ml-1"></i>
-						
-						</div>
-						</form:form>
+						<div class="modal-footer justify-content-center">
+							<button type="submit" class="btn purple-gradient btn-lg btn-block btn-rounded wave-effect" >Register
+								<i class="fas fa-paper-plane"></i>
+							</button>
+						</div> 
+				</form:form>
+				
 				</div>
 			</div>
 				<!--/.Content-->

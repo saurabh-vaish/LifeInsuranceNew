@@ -16,9 +16,7 @@
 
 			<!-- Avatar -->
 			<div class="avatar mx-auto white">
-				<img
-					src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg"
-					class="rounded-circle" alt="woman avatar">
+				<img src="get?id=${manager.mgrId}" class="rounded-circle" alt="woman avatar">
 			</div>
 
 		 	<!-- Content -->

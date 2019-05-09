@@ -1,10 +1,15 @@
 package com.app.controller;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -62,6 +67,33 @@ public class CoustomerController {
 		map.addAttribute("customer",customer);
 		return "customer";
 	}
+	
+	
+
+	// Display image
+	@RequestMapping("/get")
+	public String getOneUser(ModelMap map,@RequestParam Integer id,HttpServletResponse resp)
+	{
+		Customer cust = service.getCustomerById(id);
+
+		try {
+			resp.setContentType("image/jpeg");
+			InputStream inputStream = new ByteArrayInputStream(cust.getCustomerPic());
+			IOUtils.copy(inputStream, resp.getOutputStream());
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		map.addAttribute("customer",cust);
+
+		return "customer";
+	}
+
+
+	
+	
+	
 	
 	@RequestMapping("/profile")
 	public String showProfile(@RequestParam("cid")Integer id,ModelMap map)

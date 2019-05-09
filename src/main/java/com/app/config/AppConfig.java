@@ -14,6 +14,7 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -117,5 +118,16 @@ public class AppConfig implements WebMvcConfigurer  // for adding resources
 			return enc;
 		}
 	
+		
+
+		// for file
+		@Bean
+		public CommonsMultipartResolver multipartResolver()
+		{
+			CommonsMultipartResolver cmr = new CommonsMultipartResolver();
+			return cmr;
+		}
+
+		
 	
 }

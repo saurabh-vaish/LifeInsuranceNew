@@ -17,7 +17,6 @@
 			</div>
 
 
-
 		 	<!-- Content -->
 			<div class="card-body">
 				
@@ -185,69 +184,79 @@
 			<div class="modal-body">
 			
 			
-			<%-- 	<form:form action="branchUpdate" method="post" modelAttribute="branch" class="needs-validation" no-validation="true" > 
+			<form:form action="update"  method="post" modelAttribute="manager" class="needs-validation" enctype="multipart/form-data"> 
+						
+						<div class="md-form mb-5">
+								<i class="fas fa-user prefix grey-text"></i>
+								<form:input   class="form-control validate readOnly" path="mgrId" required="true" />
+								<label data-error="wrong" data-success="right" for="mgrId">manager Id</label>
+							</div>
 	
-						<div class="md-form mb-5">
-								<i class="fas fa-id-card prefix grey-text"></i>
-								<label data-error="wrong" data-success="right" for="branchId">Branch Code</label>
-								<form:input  class="form-control" path="branchId" required="true"/>
-							      <div class="invalid-feedback ml-5"> Please provide a valid code. </div>
-							       <div class="valid-feedback ml-5"> Looks good! </div>
+							<div class="md-form">
+								<i class="fas fa-envelope prefix grey-text"></i> 
+								<form:input  class="form-control validate" path="mgrName" required="true"/>
+								<label data-error="wrong" data-success="right" for="mgrName">manager Name</label>
 							</div>
-
-						<div class="md-form mb-5">
-								<i class="fas fa-user-alt prefix grey-text"></i> 
-								<label data-error="wrong" data-success="right" for="branchName">Branch Name</label>
-								<form:input   class="form-control" path="branchName" required="true"/>
-								<div class="invalid-feedback ml-5"> Please provide a valid name. </div>
-								<div class="valid-feedback ml-5"> Looks good! </div>
-							</div>
-
-							
 							<div class="md-form mb-5">
-								<i class="fas fa-map-marker-alt prefix grey-text"></i>
-								<label data-error="wrong" data-success="right" for="branchLocation">Branch Location</label>
-								<form:textarea  class="form-control" path="branchLocation" required="true"/>
-									<div class="invalid-feedback ml-5"> This field can't be empty </div>
-									<div class="valid-feedback ml-5"> Looks good! </div>
-							</div>
-							
-							<div class="md-form mb-5">
-								<i class="fas fa-map-marker-alt prefix grey-text"></i>
-								<label data-error="wrong" data-success="right" for="branchState">Branch State</label>
-								<form:input  class="form-control" path="branchState" required="true"/>
-									<div class="invalid-feedback ml-5"> This field can't be empty </div>
-									<div class="valid-feedback ml-5"> Looks good! </div>
-							</div>
-
-							<div class="md-form mb-5">
-								<i class="fas fa-calendar-check prefix grey-text"></i> 
-								<label data-error="wrong" data-success="right" for="branchDate">Registration Date</label>
-								<form:input  class="form-control" path="branchDate" required="true"/>
-									<div class="invalid-feedback ml-5"> Please select a valid date </div>
-							       <div class="valid-feedback ml-5"> Looks good! </div>
-							</div>
-
-							<div class="md-form mb-5">
-								<i class="fas fa-phone prefix grey-text"></i> 
-								<label data-error="wrong" data-success="right" for="branchPhone">Branch	Contact</label>
-								<form:input  class="form-control " path="branchPhone" required="true" />
-								 <div class="invalid-feedback ml-5"> This field can't be empty </div>
-							       <div class="valid-feedback ml-5"> Looks good! </div>
-							</div>
-							
-							
-							
-							  <div class="md-form mb-5">
 								<i class="fas fa-user prefix grey-text"></i> 
-									<form:select class="mdb-select md-form colorful-select dropdown-secondary ml-5" path="manager.mgrId"   >
-									<form:option value="" disabled="true" selected="true">Select Manager</form:option>
-									<form:options items="${listmgr}" itemLabel="mgrName" itemValue="mgrId"></form:options>
-								</form:select> 
-								<label data-error="wrong" data-success="right" class="mdb-main-label" for="manager.mgrId">Manager</label>
-									<div class="invalid-feedback ml-5"> This field can't be empty </div>
-									<div class="valid-feedback ml-5"> Looks good! </div>
-							</div>  
+								<form:input  class="form-control validate" path="mgrFname" required="true"/>
+								 <label data-error="wrong" data-success="right" for="mgrFname">manager Father's Name</label>
+							</div>
+
+							<div class="md-form">
+								<i class="fas fa-envelope prefix grey-text"></i> 
+								<form:input class="form-control validate" path="mgrAge" required="true"/>
+								<label data-error="wrong" data-success="right" for="mgrAge">manager Age</label>
+							</div>
+							<div class="md-form mb-5">
+								<i class="fas fa-user prefix grey-text"></i> 
+								<form:input  class="form-control validate" path="mgrGen" required="true" />
+								 <label data-error="wrong" data-success="right" for="mgrGen">manager Gender</label>
+							</div>
+
+							<div class="md-form">
+								<i class="fas fa-envelope prefix grey-text"></i> 
+								<form:input  class="form-control validate" path="mgrQual" required="true"/>
+								<label data-error="wrong" data-success="right" for="mgrQual">manager Qualification</label>
+							</div>
+							 <div class="md-form mb-5">
+								<i class="fas fa-user prefix grey-text"></i>
+								 <form:select path="mgrBranchName" class="mdb-select md-form colorful-select dropdown-secondary ml-5">
+								 	<form:option value="">--Select Branch--</form:option>
+								 	<c:forEach items="${listbranch}" var="ob">
+								 		<form:option value="${ob}">${ob}</form:option>
+								 	</c:forEach>
+								 </form:select>
+								 <label data-error="wrong" data-success="right" for="mgrBranchName">Branch Name</label>
+							</div> 
+
+							<div class="md-form">
+								<i class="fas fa-envelope prefix grey-text"></i>
+								 <form:input  class="form-control validate" path="mgrAddress" required="true"/>
+								<label data-error="wrong" data-success="right" for="mgrAddress">manager Address</label>
+							</div>
+							<div class="md-form">
+								<i class="fas fa-envelope prefix grey-text"></i> 
+								<form:input  class="form-control datepicker validate " path="mgrJoinDate" required="true"/>
+								<label data-error="wrong" data-success="right" for="mgrJoinDate">manager Join Date</label>
+							</div>
+							<div class="md-form">
+								<i class="fas fa-envelope prefix grey-text"></i> 
+								<form:input  class="form-control  validate" path="mgrPhone" required="true" />
+								<label data-error="wrong" data-success="right" for="mgrPhone">Contact</label>
+							</div>
+							<div class="md-form">
+								      <input type="file" name="mfile" required="true">
+<!-- 								 <div class="file-field">
+								    <a class="btn-floating purple-gradient mt-0 float-left">
+								      <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
+								      <input type="file" id="managerPic" name="managerPic" required="true">
+								    </a>
+								    <div class="file-path-wrapper">
+								      <input class="file-path validate" type="text" placeholder="manager picture">
+								    </div>
+								 </div> 
+ -->						</div>
 					
 						<!--Footer-->
 						<div class="modal-footer justify-content-center">
@@ -255,10 +264,7 @@
 								<i class="fas fa-paper-plane"></i>
 							</button>
 						</div> 
-	
-				</form:form> 
-			
-			 --%>
+				</form:form>
 			
 			
 						
@@ -303,7 +309,7 @@
 				
 				      <!--Footer-->
 				      <div class="modal-footer justify-content-center">
-				        <a type="button" href="managerDel?bid=${manager.mgrId }" class="btn btn-danger">Delete </a>
+				        <a type="button" href="managerDel?mid=${manager.mgrId }" class="btn btn-danger">Delete </a>
 				        <a type="button" class="btn btn-outline-danger waves-effect" data-dismiss="modal">Cancel</a>
 				      </div>
 				    </div>
@@ -315,6 +321,18 @@
 
 
 	</div>
+	
+					<h5> ${param} param</h5>
+					<h5> ${param.bid} bid</h5>
+					<h5> ${param.msg}  msg</h5>
+	
+					<c:if test="${param.msg ne null}">
+							<div class="card card-footer bg-success">
+								<h5> ${param.msg} </h5>
+							</div>
+						</c:if>
+
+	
 
 ${msg }
 
